@@ -8,6 +8,10 @@ final int GAMEOVER = 3;
 float leftx, lefty, leftd, rightx, righty, rightd; //paddles
 float ballx, bally, balld; //ball
 
+//keyboard variables
+boolean wkey, skey, upkey, downkey;
+
+
 void setup() {
   size(1000,800);
   mode = GAME;
@@ -25,6 +29,9 @@ void setup() {
   ballx = width/2;
   bally = height/2;
   balld = 100;
+  
+  //initialize keybaord vars
+  wkey = skey = upkey = downkey = false;
 }
 
 void draw() {
