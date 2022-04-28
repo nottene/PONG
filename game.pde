@@ -20,6 +20,12 @@ void game() {
 
   //ball
   circle(ballx, bally, balld);
+  ballx = ballx + vx;
+  bally = bally + vy;
+  //bouncing
+  if(dis <= leftd + balld) {
+    vx = vx*-1;
+  }
 }
 
 void gameClicks () {

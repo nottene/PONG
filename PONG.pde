@@ -7,29 +7,32 @@ final int GAMEOVER = 3;
 //entity variables
 float leftx, lefty, leftd, rightx, righty, rightd; //paddles
 float ballx, bally, balld; //ball
-
+float vx, vy;
+float dis;
 //keyboard variables
 boolean wkey, skey, upkey, downkey;
 
 
 void setup() {
-  size(1000,800);
+  size(1000, 800);
   mode = GAME;
-  
+
   //intiatize paddles
   leftx = 0;
   lefty = height/2;
   leftd = 200;
-  
+
   rightx = width;
   righty = height/2;
   rightd = 200;
-  
+
   //initialize ball
   ballx = width/2;
   bally = height/2;
   balld = 100;
-  
+  vx = random(-3, 3);
+  vy = random(-3, 3);
+
   //initialize keybaord vars
   wkey = skey = upkey = downkey = false;
 }
