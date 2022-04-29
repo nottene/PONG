@@ -30,8 +30,9 @@ void setup() {
   ballx = width/2;
   bally = height/2;
   balld = 100;
-  vx = random(-3, 3);
+  vx = 3;
   vy = random(-3, 3);
+  dis = 500;
 
   //initialize keybaord vars
   wkey = skey = upkey = downkey = false;

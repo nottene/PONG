@@ -23,8 +23,18 @@ void game() {
   ballx = ballx + vx;
   bally = bally + vy;
   //bouncing
-  if(dis <= leftd + balld) {
-    vx = vx*-1;
+
+  if (dist(leftx, lefty, ballx, bally) <= (leftd + balld)/2) {
+    vx = -vx;
+  }
+  if (dist(rightx, righty, ballx, bally) <= (leftd + balld)/2) {
+    vx = -vx;
+  }
+  if (bally <= balld/2) {
+    vy = -vy;
+  }
+  if (bally <= balld/2) {
+    vy = -vy;
   }
 }
 
