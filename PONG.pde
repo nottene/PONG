@@ -30,7 +30,7 @@ void setup() {
   ballx = width/2;
   bally = height/2;
   balld = 100;
-  vx = 3;
+  vx = 6;
   vy = random(-3, 3);
   dis = 500;
 

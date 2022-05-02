@@ -5,16 +5,16 @@ void game() {
   circle(rightx, righty, rightd);
   //move paddles
   if (wkey == true) {
-    lefty = lefty - 5;
+    lefty = lefty - 4;
   }
   if (skey == true) {
-    lefty = lefty +5;
+    lefty = lefty + 4;
   }
   if (upkey == true) {
-    righty = righty -5;
+    righty = righty -4;
   }
   if (downkey == true) {
-    righty = righty +5;
+    righty = righty + 4;
   }
 
 
@@ -30,7 +30,7 @@ void game() {
   if (dist(rightx, righty, ballx, bally) <= (leftd + balld)/2) {
     vx = -vx;
   }
-  if (bally <= balld/2) {
+  if (bally >= height-balld/2) {
     vy = -vy;
   }
   if (bally <= balld/2) {
