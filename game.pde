@@ -1,4 +1,5 @@
 void game() {
+
   background(#000000);
   // draw paddles
   circle(leftx, lefty, leftd);
@@ -20,21 +21,23 @@ void game() {
 
   //ball
   circle(ballx, bally, balld);
-  ballx = ballx + vx;
-  bally = bally + vy;
+  ballx = ballx + ballVel.x;
+  bally = bally + ballVel.y;
   //bouncing
 
   if (dist(leftx, lefty, ballx, bally) <= (leftd + balld)/2) {
-    vx = -vx;
+    ballVel.x = (ballx - leftx)/20;
+    ballVel.y = (bally - lefty)/20;
   }
   if (dist(rightx, righty, ballx, bally) <= (leftd + balld)/2) {
-    vx = -vx;
+    ballVel.x = (ballx - rightx)/20;
+    ballVel.y = (bally - righty)/20;
   }
   if (bally >= height-balld/2) {
-    vy = -vy;
+    ballVel.y = -ballVel.y;
   }
   if (bally <= balld/2) {
-    vy = -vy;
+    ballVel.y = -ballVel.y;
   }
 }
 

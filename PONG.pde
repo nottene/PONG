@@ -7,7 +7,7 @@ final int GAMEOVER = 3;
 //entity variables
 float leftx, lefty, leftd, rightx, righty, rightd; //paddles
 float ballx, bally, balld; //ball
-float vx, vy;
+PVector ballVel;
 float dis;
 //keyboard variables
 boolean wkey, skey, upkey, downkey;
@@ -30,8 +30,10 @@ void setup() {
   ballx = width/2;
   bally = height/2;
   balld = 100;
-  vx = 6;
-  vy = random(-3, 3);
+
+
+  ballVel = new PVector(6, random(-3, 3));
+  ballVel.setMag(8);
   dis = 500;
 
   //initialize keybaord vars
