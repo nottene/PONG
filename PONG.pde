@@ -11,10 +11,11 @@ PVector ballVel;
 float dis;
 //keyboard variables
 boolean wkey, skey, upkey, downkey;
-
+//scoring
+int leftscore, rightscore, timer;
 
 void setup() {
-  size(1000, 800);
+  size(1000, 800, P2D);
   mode = GAME;
 
   //intiatize paddles
@@ -32,7 +33,7 @@ void setup() {
   balld = 100;
 
 
-  ballVel = new PVector(6, random(-3, 3));
+  ballVel = new PVector(3, 0);
   ballVel.setMag(8);
   dis = 500;
 
