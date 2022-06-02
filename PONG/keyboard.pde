@@ -2,7 +2,7 @@ void keyPressed() {
   if (key == 'w' || key == 'W') {
     wkey = true;
   }
-  if (key == 's' || key == 's') {
+  if (key == 's' || key == 'S') {
     skey = true;
   }
   if (keyCode == UP){
