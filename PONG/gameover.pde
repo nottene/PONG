@@ -15,10 +15,12 @@ void gameover () {
 
 void gameoverClicks () {
   mode=INTRO;
+  theme.rewind();
   lefty = height/2;
   righty = height/2;
   ballx = width/2;
   bally = height/2;
   ballVel = new PVector(3, 0);
+  leftscore = rightscore = 0;
   timer = 3;
 }

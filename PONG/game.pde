@@ -71,6 +71,10 @@ void game() {
     rightscore++;
     ballx = width/2;
     bally = height/2;
+    leftx = 0;
+    lefty = height/2;
+    rightx = width;
+    righty = height/2;
     ballVel = new PVector(-3, int(random(-3, 3)));
     timer = 3;
     score.rewind();
@@ -80,6 +84,10 @@ void game() {
     leftscore++;
     ballx = width/2;
     bally = height/2;
+    leftx = 0;
+    lefty = height/2;
+    rightx = width;
+    righty = height/2;
     ballVel = new PVector(3, int(random(-3, 3)));
     timer = 3;
     score.rewind();
@@ -119,5 +127,6 @@ void game() {
 void gameClicks () {
   if (mouseX > 465 && mouseX < 535 && mouseY > 40 && mouseY < 110) {
     mode = PAUSE;
+    theme.pause();
   }
 }

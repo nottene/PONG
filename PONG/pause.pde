@@ -26,6 +26,7 @@ void pauseClicks() {
   }
   if (mouseX > 450 && mouseX < 550 && mouseY > 120 && mouseY < 190) {
     mode = INTRO;
+    theme.rewind();
     lefty = height/2;
     righty = height/2;
     ballx = width/2;

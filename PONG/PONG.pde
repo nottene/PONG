@@ -36,7 +36,7 @@ void setup() {
   pauseButton = loadImage("pauseButton.png");
   resumeButton = loadImage("resumeButton.png");
   SIUUUUU = createFont("Earnest Harlley.ttf", 150);
-  //intiatize paddles
+  //initialize paddles
   leftx = 0;
   lefty = height/2;
   leftd = 200;
