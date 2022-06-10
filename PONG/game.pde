@@ -1,132 +1,96 @@
 void game() {
-  background(#A0A0A0);
+  background(#767676);
   theme.play();
-  //center line
-  strokeWeight(5);
+  //paddle
+  fill(#FF00E1);
+  strokeWeight(4);
   stroke(#000000);
-  line(width/2, 0, width/2, height);
-  //pause button
-  strokeWeight(5);
-  stroke(#FFFFFF);
-  rectButton(465, 535, 40, 110);
-  fill(#FFFF00);
-  rect(465, 40, 70, 70);
-  image(pauseButton, 465, 40, 70, 70);
-
-  //scoreboard
-  textSize(100);
-  fill(#00FFFF);
-  text(leftscore, width/4, 100);
-  fill(#FFFF00);
-  text(rightscore, 3*width/4, 100);
-  //text(timer, width/2, 100);
-  timer = timer - (0.017);
-
-
-  // draw paddles
-  fill(#00FFFF);
-  stroke(#000000);
-  circle(leftx, lefty, leftd);
-  fill(#FFFF00);
-  circle(rightx, righty, rightd);
-  //move paddles
-  if (wkey == true) {
-    lefty = lefty - 6;
-  }
-  if (skey == true) {
-    lefty = lefty + 6;
-  }
-  if (AI == false) {
-    if (upkey == true) {
-      righty = righty -6;
-    }
-    if (downkey == true) {
-      righty = righty + 6;
-    }
-  } else {
-    if (ballx > width/2) {
-      if (bally > righty) {
-        righty = righty + 6;
-      }
-      if ( bally < righty) {
-        righty = righty -6;
-      }
-    }
-  }
-  lefty = min(max(0, lefty), height);
-  righty = min(max(0, righty), height);
-
-
+  circle(px, py, pd);
+  if (akey) px = px-5;
+  if (dkey) px = px+5;
+  px = min(max(0, px), width);
   //ball
-  fill(#00FF00);
-  circle(ballx, bally, balld);
-
-  if (timer <0) {
-    ballx = ballx + ballVel.x;
-    bally = bally + ballVel.y;
+  fill(#FFFFFF);
+  strokeWeight(4);
+  stroke(#000000);
+  circle(bx, by, bd);
+  if (timer<0) {
+    bx += vx;
+    by += vy;
   }
-
-  //scoring
-  if (ballx < 0) {
-    rightscore++;
-    ballx = width/2;
-    bally = height/2;
-    leftx = 0;
-    lefty = height/2;
-    rightx = width;
-    righty = height/2;
-    ballVel = new PVector(-3, int(random(-3, 3)));
-    timer = 3;
-    score.rewind();
-    score.play();
-  }
-  if (ballx > width) {
-    leftscore++;
-    ballx = width/2;
-    bally = height/2;
-    leftx = 0;
-    lefty = height/2;
-    rightx = width;
-    righty = height/2;
-    ballVel = new PVector(3, int(random(-3, 3)));
-    timer = 3;
-    score.rewind();
-    score.play();
-  }
-
   //bouncing
-  if (dist(leftx, lefty, ballx, bally) <= (leftd + balld)/2) {
-    ballVel.x = (ballx - leftx)/10;
-    ballVel.y = (bally - lefty)/10;
+  if (dist(px, py, bx, by) < (bd + pd)/2) {
+    vx = (bx-px)/5;
+    vy = (by-py)/5;
     bounce.rewind();
     bounce.play();
   }
-  if (dist(rightx, righty, ballx, bally) <= (leftd + balld)/2) {
-    ballVel.x = (ballx - rightx)/10;
-    ballVel.y = (bally - righty)/10;
+  if (by < bd/2) {
+    vy = -vy;
     bounce.rewind();
     bounce.play();
   }
-  if (bally >= height-balld/2) {
-    ballVel.y = -ballVel.y;
+  if (bx < bd/2 || bx > width-bd/2) {
+    vx = -vx;
+    bounce.rewind();
+    bounce.play();
   }
-  if (bally <= balld/2) {
-    ballVel.y = -ballVel.y;
+  //bricks
+  int i = 0;
+  while (i<n) {
+    if (alive[i] == true) {
+      manageBrick(i);
+    }
+    i++;
   }
-
+  //scoreboard
+  textFont(oya);
+  textSize(40);
+  fill(#FFFFFF);
+  text("score: " + score, 150, 750);
+  timer = timer -0.017;
+  //lose lives
+  textFont(oya);
+  textSize(40);
+  fill(#FFFFFF);
+  text("lives: " + lives, 650, 750);
+  if (by > height-bd/2) {
+    lives--;
+    bx = width/2;
+    by = height-200;
+    vx = 0;
+    vy = 3;
+    timer = 3;
+    loseLife.rewind();
+    loseLife.play();
+  }
   //go to end screen
-  if (leftscore == 3) {
+  if (score == 39) {
     mode = GAMEOVER;
   }
-  if (rightscore == 3) {
+  if (lives == 0) {
     mode = GAMEOVER;
   }
 }
 
-
-void gameClicks () {
-  if (mouseX > 465 && mouseX < 535 && mouseY > 40 && mouseY < 110) {
-    mode = PAUSE;
-    theme.pause();
+void manageBrick(int i) {
+  if (y[i] == 50) fill(#FF0000);
+  if (y[i] == 125) fill(#FFAA00);
+  if (y[i] == 200) fill(#FFFF00);
+  if (y[i] == 275) fill(#00FF00);
+  if (y[i] == 350) fill(#00FFFF);
+  if (y[i] == 425) fill(#0000FF);
+  circle(x[i], y[i], brickd);
+  if (dist(bx, by, x[i], y[i]) < bd/2 + brickd/2) {
+    vx = (bx-x[i])/5;
+    vy = (by-y[i])/5;
+    alive[i] = false;
+    score++;
+    bounce.rewind();
+    bounce.play();
   }
+}
+void gameClicks() {
+  mode = PAUSE;
+  theme.pause();
 }

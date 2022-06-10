@@ -1,33 +1,24 @@
 void intro() {
-  background(#A0A0A0);
-  textSize(100);
-  textFont(SIUUUUU);
-  fill(#000000);
-  strokeWeight(5);
-  text("PONG", width/2, 100);
-  //1 player button
-  rectButton(175, 425, 500, 650);
+  background(#767676);
+  image(gif[f], 0, 0, width, height);
+  if (frameCount%3==0) f++;
+  if (f == numberOfFrames) f = 0;
+  textFont(oya);
+  textSize(80);
   fill(#FFFFFF);
-  rect(175, 500, 250, 150);
-  fill(#000000);
-  textSize(50);
-  text("1 PLAYER", 300, 575);
-  //2 player button
-  rectButton(575, 825, 500, 650);
+  text("RAINBOW BREAKER", width/2, 250);
+  //play button
+  rectButton(300, 500, 500, 600);
   fill(#FFFFFF);
-  rect(575, 500, 250, 150);
+  strokeWeight(2);
+  rect(300, 500, 200, 100);
   fill(#000000);
-  textSize(50);
-  text("2 PLAYER", 700, 575);
+  textSize(40);
+  text("BREAK!!!", width/2, 565);
 }
 
 void introClicks() {
-  if (mouseX > 175 && mouseX < 425 && mouseY > 500 && mouseY < 650) {
-    mode=GAME;
-    AI = true;
-  }
-  if (mouseX > 575 && mouseX < 825 && mouseY > 500 && mouseY < 650) {
-    mode=GAME;
-    AI = false;
+  if (mouseX > 300 && mouseX < 500 && mouseY > 500 && mouseY < 600) {
+    mode = GAME;
   }
 }
